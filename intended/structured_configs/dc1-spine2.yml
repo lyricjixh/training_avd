@@ -108,7 +108,7 @@ vrfs:
 - name: MGMT
   ip_routing: false
 management_interfaces:
-- name: Management1
+- name:  Management0
   description: oob_management
   shutdown: false
   vrf: MGMT
@@ -180,7 +180,7 @@ router_bfd:
     multiplier: 3
 ntp:
   local_interface:
-    name: Management1
+    name:  Management0
     vrf: MGMT
   servers:
   - name: 0.pool.ntp.org

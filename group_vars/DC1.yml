@@ -7,7 +7,7 @@ spine:
   # Definition of default values that will be configured to all nodes defined in this group
   defaults:
     # Set the relevant platform as each platform has different default values in Ansible AVD
-    platform: vEOS-lab
+    platform: cEOS
     # Pool of IPv4 addresses to configure interface Loopback0 used for BGP EVPN sessions
     loopback_ipv4_pool: 10.255.0.0/27
     # ASN to be used by BGP
@@ -31,7 +31,7 @@ spine:
 l3leaf:
   defaults:
     # Set the relevant platform as each platform has different default values in Ansible AVD
-    platform: vEOS-lab
+    platform: cEOS
     # Pool of IPv4 addresses to configure interface Loopback0 used for BGP EVPN sessions
     loopback_ipv4_pool: 10.255.0.0/27
     # Offset all assigned loopback IP addresses.
@@ -97,7 +97,7 @@ l3leaf:
 # L2 Leaf switch group
 # l2leaf:
 #   defaults:
-#     platform: vEOS-lab
+#     platform: cEOS
 #     spanning_tree_mode: mstp
 
 #   node_groups:

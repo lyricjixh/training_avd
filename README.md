@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This example is meant to be used as the logical second step in introducing AVD to new users, directly following the [Introduction to Ansible and AVD](../../docs/getting-started/intro-to-ansible-and-avd.md) section. New users with access to virtual switches (using Arista vEOS-lab or cEOS) can learn how to generate configuration and documentation for a complete fabric environment. Users with access to physical switches will have to adapt a few settings. This is all documented inline in the comments included in the YAML files. If a lab with virtual or physical switches is not accessible, this example can be used only to generate the output from AVD if required.
+This example is meant to be used as the logical second step in introducing AVD to new users, directly following the [Introduction to Ansible and AVD](../../docs/getting-started/intro-to-ansible-and-avd.md) section. New users with access to virtual switches (using Arista cEOS or cEOS) can learn how to generate configuration and documentation for a complete fabric environment. Users with access to physical switches will have to adapt a few settings. This is all documented inline in the comments included in the YAML files. If a lab with virtual or physical switches is not accessible, this example can be used only to generate the output from AVD if required.
 
 The example includes and describes all the AVD files and their content used to build an L3LS EVPN/VXLAN Symmetric IRB network covering a single DC using the following:
 
@@ -65,7 +65,7 @@ ansible-avd-examples/ (or wherever the playbook was run)
 
 ### Physical topology
 
-The drawing below shows the physical topology used in this example. The interface assignment shown here are referenced across the entire example, so keep that in mind if this example must be adapted to a different topology. Finally, the Ansible host is connected to the dedicated out-of-band management port (Ethernet0 when using vEOS-lab):
+The drawing below shows the physical topology used in this example. The interface assignment shown here are referenced across the entire example, so keep that in mind if this example must be adapted to a different topology. Finally, the Ansible host is connected to the dedicated out-of-band management port (Ethernet0 when using cEOS):
 
 ![Figure: Arista Leaf Spine physical topology](images/avd-single-dc-l3ls-example.svg)
 
@@ -384,7 +384,7 @@ mgmt_gateway: 172.16.1.1 # (1)!
 
 spine:
   defaults:
-    platform: vEOS-lab # (2)!
+    platform: cEOS # (2)!
     loopback_ipv4_pool: 10.255.0.0/27 # (3)!
     bgp_as: 65100 # (4)!
 
@@ -411,7 +411,7 @@ The following section covers the L3 leaf switches. Significantly more settings n
 ```yaml title="DC1.yml"
 l3leaf:
   defaults:
-    platform: vEOS-lab # (1)!
+    platform: cEOS # (1)!
     loopback_ipv4_pool: 10.255.0.0/27 # (2)!
     loopback_ipv4_offset: 2 # (3)!
     vtep_loopback_ipv4_pool: 10.255.1.0/27 # (4)!
@@ -481,7 +481,7 @@ Finally, more of the same, but this time for the L2 leaf switches:
 ```yaml title="DC1.yml"
 l2leaf:
   defaults:
-    platform: vEOS-lab
+    platform: cEOS
     spanning_tree_mode: mstp
 
   node_groups:
