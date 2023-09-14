@@ -33,12 +33,12 @@ all:
                   ansible_host: 172.100.100.4
                 dc1-leaf2b:
                   ansible_host: 172.100.100.5
-            DC1_L2_LEAVES:
-              hosts:
-                dc1-leaf1c:
-                  ansible_host: 172.100.100.51
-                dc1-leaf2c:
-                  ansible_host: 172.100.100.52
+            # DC1_L2_LEAVES:
+            #   hosts:
+            #     dc1-leaf1c:
+            #       ansible_host: 172.100.100.51
+            #     dc1-leaf2c:
+            #       ansible_host: 172.100.100.52
 
     NETWORK_SERVICES:
       children:
