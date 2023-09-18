@@ -11,7 +11,7 @@ This repository is configured to run [`arista.eos`](https://github.com/aristanet
 The diagram below shows that the Containerlab topology has one leaf/spine cluster. To simplify the lab topology, only the cEOS based switch nodes are created without hosts. The virutal lab topolgy meta data is defined in [ceos.clab.yaml](./topology/ceos.clab.yaml).
 
 <p align="center">
-  <img src="files/imgs/clab-topo.jpg" alt="Containerlab Topology" width="650"/>
+  <img src="../training_ansible/files/imgs/clab-topo.jpg" alt="Containerlab Topology" width="650"/>
 </p>
 
 ## Containerlab topology device list
