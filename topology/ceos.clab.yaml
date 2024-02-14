@@ -1,0 +1,68 @@
+name: ceos-lab
+
+mgmt:
+  network: ceos-oob
+  ipv4-subnet: 172.100.100.0/24
+  
+topology:
+  kinds:
+    ceos:
+      image: ceos:4.30.2F
+      env:
+        CLAB_MGMT_VRF: MGMT
+  nodes:
+    cleaf01:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.2
+    cleaf02: 
+      kind: ceos
+      mgmt-ipv4: 172.100.100.3
+      # env:
+      #   BOOT_DEALY: 10
+    cleaf03:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.4
+      # env:
+      #   BOOT_DEALY: 20
+    cleaf04: 
+      kind: ceos
+      mgmt-ipv4: 172.100.100.5
+      # env:
+      #   BOOT_DEALY: 30
+    spine01:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.101
+      # env:
+      #   BOOT_DEALY: 40
+    spine02:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.102
+      # env:
+      #   BOOT_DEALY: 50
+
+  links:
+    # POD leaf pair in rack interlink
+    - endpoints: ["cleaf01:eth27", "cleaf02:eth27"]
+    - endpoints: ["cleaf01:eth28", "cleaf02:eth28"]
+    - endpoints: ["cleaf03:eth27", "cleaf04:eth27"]
+    - endpoints: ["cleaf03:eth28", "cleaf04:eth28"]
+
+    # POD leaf to spine links
+    - endpoints: ["cleaf01:eth31", "spine01:eth1"]
+    - endpoints: ["cleaf01:eth32", "spine02:eth1"]
+    - endpoints: ["cleaf02:eth31", "spine01:eth2"]
+    - endpoints: ["cleaf02:eth32", "spine02:eth2"]
+    - endpoints: ["cleaf03:eth31", "spine01:eth3"]
+    - endpoints: ["cleaf03:eth32", "spine02:eth3"]
+    - endpoints: ["cleaf04:eth31", "spine01:eth4"]
+    - endpoints: ["cleaf04:eth32", "spine02:eth4"]
+
+    # POD leaf pair to Host links
+    - endpoints: ["cleaf01:eth1", "host:cleaf01_eth1"]
+    - endpoints: ["cleaf01:eth2", "host:cleaf01_eth2"]
+    - endpoints: ["cleaf02:eth1", "host:cleaf02_eth1"]
+    - endpoints: ["cleaf02:eth2", "host:cleaf02_eth2"]
+    - endpoints: ["cleaf03:eth1", "host:cleaf03_eth1"]
+    - endpoints: ["cleaf03:eth2", "host:cleaf03_eth2"]
+    - endpoints: ["cleaf04:eth1", "host:cleaf04_eth1"]
+    - endpoints: ["cleaf04:eth2", "host:cleaf04_eth2"]
